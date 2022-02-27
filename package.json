@@ -10,17 +10,18 @@
   "author": "Rishab Dugar",
   "license": "ISC",
   "dependencies": {
-    "fs": "0.0.1-security",
     "@babel/polyfill": "^7.12.1",
-    "helmet": "^4.6.0",
-    "hpp": "^0.2.3",
     "cors": "^2.8.5",
     "date": "^1.0.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.1.0",
     "express-rate-limit": "^5.5.1",
-    "morgan": "^1.10.0"
+    "fs": "0.0.1-security",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "morgan": "^1.10.0",
+    "urban-dictionary": "^3.0.2"
   },
   "devDependencies": {
     "eslint": "^8.1.0",

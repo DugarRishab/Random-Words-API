@@ -1,4 +1,5 @@
 const words = require('./words.json');
+const dictionary = require('urban-dictionary');
 
 exports.generateMultipleWords = async (req, res, next) => {
 	try {
@@ -24,8 +25,8 @@ exports.generateMultipleWords = async (req, res, next) => {
 				filteredWords = filteredWords.filter(word => (`${word.length}` >= queries.min));
 			}
 		}
-		console.log('query: ', queries.length);
-		console.log('words: ', filteredWords);
+		console.log('query: ', queries);
+		//console.log('words: ', filteredWords);
 
 		const result = filteredWords[generateRandomNumber(filteredWords.length)];
 
@@ -37,9 +38,53 @@ exports.generateMultipleWords = async (req, res, next) => {
 		});
 	}
 	catch (err) {
-		console.log('err: ', err);
+		console.log('error: sorry, we ran into some error');
+		return res.status(400).json({
+			message: "error: sorry, we ran into some error"
+		});
 	}
 }
 const generateRandomNumber = (limit) => {
 	return Math.floor(Math.random() * limit);
+}
+exports.checkWord = async (req, res, next) => {
+	try {
+		const { word } = req.params;
+
+		const definations = await dictionary.define(word);
+
+		//const defination
+
+		const define = sortObject(definations);
+
+		res.status(200).json({
+			message: "success",
+			data: {
+				word,
+				define
+			}
+		});
+	}
+	catch (err) {
+
+		console.log(err);
+
+		return res.status(404).json({
+			message: "Word not Found"
+		});
+
+	}
+
+}
+const sortObject = (array) => {
+	let result = {
+		thumbs_up: 0
+	}
+	array.forEach(el => {
+		if (el.thumbs_up >= result.thumbs_up) {
+			result = el;
+		}
+	});
+
+	return result;
 }
