@@ -1,9 +1,8 @@
 const words = require('./words.json');
 const dictionary = require('urban-dictionary');
 
-exports.generateMultipleWords = async (req, res, next) => {
-	try {
-		
+exports.generateMultipleWords = (req, res, next) => {
+	
 		const queries = req.query; 
 		let filteredWords = words;
 		
@@ -36,13 +35,7 @@ exports.generateMultipleWords = async (req, res, next) => {
 				word: result
 			}
 		});
-	}
-	catch (err) {
-		console.log('error: sorry, we ran into some error');
-		return res.status(400).json({
-			message: "error: sorry, we ran into some error"
-		});
-	}
+	
 }
 const generateRandomNumber = (limit) => {
 	return Math.floor(Math.random() * limit);
@@ -69,8 +62,11 @@ exports.checkWord = async (req, res, next) => {
 
 		console.log(err);
 
-		return res.status(400).json({
-			message: "Word not Found"
+		return res.status(200).json({
+			message: "success",
+			data: {
+				define:{}
+			}
 		});
 
 	}
