@@ -69,7 +69,7 @@ exports.checkWord = async (req, res, next) => {
 
 		console.log(err);
 
-		return res.status(404).json({
+		return res.status(400).json({
 			message: "Word not Found"
 		});
 
