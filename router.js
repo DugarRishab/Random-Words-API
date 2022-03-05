@@ -9,4 +9,7 @@ Router
 
 Router.route('/check/:word').get(controller.checkWord);
 
+Router.get('/filterData', controller.filterData);
+
 module.exports = Router;
+
